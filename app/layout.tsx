@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${APP_NAME}`,
-  description: `${APP_DESCRIPTION}`,
+  title: { template: `%s | Prostore`, default: APP_NAME },
+  description: APP_DESCRIPTION,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
