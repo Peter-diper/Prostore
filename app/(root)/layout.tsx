@@ -5,6 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Home",
 };
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex h-screen flex-col">
