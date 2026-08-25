@@ -1,8 +1,9 @@
-import { ShoppingCart, User, UserIcon } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { APP_NAME } from "../../../lib/const";
+import { APP_NAME } from "@/lib/const/index";
+import ModeToggle from "./mode-toggle";
 
 const Header = () => {
   return (
@@ -25,7 +26,8 @@ const Header = () => {
         </div>
 
         {/* right side section */}
-        <div className="space-x-2">
+        <div className="flex items-center space-x-2">
+          <ModeToggle />
           <Button variant="ghost">
             <Link className={"flex gap-2"} href={"/cart"}>
               <ShoppingCart /> Cart
