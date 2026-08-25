@@ -6,14 +6,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="border-t">
+    <footer className="border-t">
       <div className="p-5 flex-center">
-        {currentYear} {APP_NAME}. All Rights Reserved By {"  "}
+        {currentYear} {APP_NAME}. All Rights Reserved By
         <a target="_blank" href="https://github.com/Peter-diper">
           {" - "} <strong>Rasool Fada</strong>
         </a>
       </div>
-    </div>
+    </footer>
   );
 };
 

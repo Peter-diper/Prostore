@@ -67,7 +67,6 @@ const ModeToggle = () => {
         >
           light
         </DropdownMenuCheckboxItem>
-        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );

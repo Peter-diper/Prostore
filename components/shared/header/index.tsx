@@ -29,12 +29,12 @@ const Header = () => {
         <div className="flex items-center space-x-2">
           <ModeToggle />
           <Button variant="ghost">
-            <Link className={"flex gap-2"} href={"/cart"}>
+            <Link className={"flex-center gap-2"} href={"/cart"}>
               <ShoppingCart /> Cart
             </Link>
           </Button>
           <Button>
-            <Link className={"flex gap-2"} href={"/sign-in"}>
+            <Link className={" gap-2 flex-center"} href={"/sign-in"}>
               <User /> Sign In
             </Link>
           </Button>
