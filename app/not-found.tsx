@@ -21,7 +21,7 @@ const NotFoundPage = () => {
           <Link href={"/"}> Back To Home</Link>
         </Button>
       </div>
-    </div>
+    </div> 
   );
 };
 
