@@ -1,4 +1,4 @@
-interface Product {
+export interface Product {
   name: string;
   slug: string;
   category: string;
@@ -12,10 +12,10 @@ interface Product {
   isFeatured: boolean;
   banner: string | null;
 }
-interface DataBaseData<T> {
-  products: T[];
+export interface DataBaseData {
+  products: Product[];
 }
-const sampleData: DataBaseData<Product> = {
+const sampleData: DataBaseData = {
   products: [
     {
       name: "Polo Sporting Stretch Shirt",
