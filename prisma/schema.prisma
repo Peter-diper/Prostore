@@ -23,13 +23,3 @@ model Product {
   banner      String?
   createdAt   DateTime @default(now()) @db.Timestamp(6)
 }
-
-model User {
-  id        String   @id @default(cuid()) @db.Uuid()
-  name      String
-  usenamer  String   @unique
-  email     String   @unique
-  password  String
-  phone     Int      @unique
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-}
