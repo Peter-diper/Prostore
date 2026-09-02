@@ -8,9 +8,9 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(dbgenerated("gen_random_uuid")) @db.Uuid
+  id          String   @id @default(cuid()) @db.Uuid
   name        String
-  slug        String   @unique(map: "product_slug_idx")
+  slug        String   @unique
   categorty   String
   images      String[]
   brand       String
@@ -22,4 +22,14 @@ model Product {
   isFeatured  Boolean  @default(false)
   banner      String?
   createdAt   DateTime @default(now()) @db.Timestamp(6)
+}
+
+model User {
+  id        String   @id @default(cuid()) @db.Uuid()
+  name      String
+  usenamer  String   @unique
+  email     String   @unique
+  password  String
+  phone     Int      @unique
+  createdAt DateTime @default(now()) @db.Timestamp(6)
 }

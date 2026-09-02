@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Product" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid,
+    "id" UUID NOT NULL,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "categorty" TEXT NOT NULL,
@@ -19,4 +19,4 @@ CREATE TABLE "Product" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "product_slug_idx" ON "Product"("slug");
+CREATE UNIQUE INDEX "Product_slug_key" ON "Product"("slug");
