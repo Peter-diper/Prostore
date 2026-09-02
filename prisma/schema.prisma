@@ -11,7 +11,7 @@ model Product {
   id          String   @id @default(cuid()) @db.Uuid
   name        String
   slug        String   @unique
-  categorty   String
+  category   String
   images      String[]
   brand       String
   description String
