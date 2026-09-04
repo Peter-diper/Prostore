@@ -1,4 +1,4 @@
-import { Product } from "../../../db/sample-data";
+import { Product } from "@/lib/actions/product.action";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
