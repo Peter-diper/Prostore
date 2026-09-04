@@ -1,9 +1,8 @@
 "use server";
 
-import { PrismaClient } from "../generated/prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
 import { convertToPlaneObject } from "../utils";
 import { LATEST_PRODUCTS_LIMIT } from "../const";
+import { prisma } from "@/lib/prismaUtile/index";
 
 // get lastest products
 
@@ -23,15 +22,9 @@ export interface Product {
 }
 
 export async function getLatestProducts() {
-  const adapter = new PrismaPg({
-    connectionString: process.env.DATABASE_URL,
-  });
+  const prismaObj = prisma();
 
-  const prisma = new PrismaClient({
-    adapter,
-  });
-
-  const data = await prisma.product.findMany({
+  const data = await prismaObj.product.findMany({
     take: LATEST_PRODUCTS_LIMIT,
     orderBy: { createdAt: "desc" },
   });

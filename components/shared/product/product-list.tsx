@@ -2,6 +2,7 @@ import { Product } from "@/lib/actions/product.action";
 import ProductCard from "./product-card";
 
 interface ProductList {
+  // eslint-disable-next-line
   data: any;
   title?: string;
   limit?: number;
