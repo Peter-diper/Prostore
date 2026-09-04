@@ -8,10 +8,10 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(cuid()) @db.Uuid
+  id          String   @id @default(cuid())
   name        String
   slug        String   @unique
-  category   String
+  category    String
   images      String[]
   brand       String
   description String
