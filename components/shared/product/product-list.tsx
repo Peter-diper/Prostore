@@ -1,4 +1,4 @@
-import { Product } from "@/lib/actions/product.action";
+import { Product } from "@/app/types";
 import ProductCard from "./product-card";
 
 interface ProductList {
