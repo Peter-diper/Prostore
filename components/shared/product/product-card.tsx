@@ -6,7 +6,7 @@ import ProductPrice from "./product-price";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full p-0 md:max-w-sm ">
       <CardHeader className="p-0 grid justify-center items-center">
         <Link href={`/product/${product.slug}`}>
           <div className="overflow-hidden">
@@ -16,7 +16,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               height={300}
               width={300}
               priority
-              className="md:hover:scale-105 transition-all duration-150"
+              className="md:hover:scale-105 object-cover transition-all duration-150"
             />
           </div>
         </Link>

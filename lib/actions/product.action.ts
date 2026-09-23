@@ -2,12 +2,10 @@
 
 import { convertToPlaneObject } from "../utils";
 import { LATEST_PRODUCTS_LIMIT } from "../const";
-import { prisma } from "@/lib/prismaUtile/index";
+import { prisma } from "@/db/prisma";
 
 export async function getLatestProducts() {
-  const prismaObj = prisma();
-
-  const data = await prismaObj.product.findMany({
+  const data = await prisma.product.findMany({
     take: LATEST_PRODUCTS_LIMIT,
     orderBy: { createdAt: "desc" },
   });
