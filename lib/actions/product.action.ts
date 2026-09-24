@@ -10,7 +10,7 @@ export async function getLatestProducts() {
     orderBy: { createdAt: "desc" },
   });
 
-  return convertToPlaneObject(data);
+  return data;
 }
 
 // Get single product by it's slug
