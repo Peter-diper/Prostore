@@ -17,6 +17,7 @@
     "@remixicon/react": "^4.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cn": "^0.4.0",
     "dotenv": "^17.4.2",
     "lucide-react": "^1.34.0",
     "next": "16.3.2",
