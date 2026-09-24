@@ -12,8 +12,13 @@ const seed = async () => {
   try {
     // delete all data
     await prisma.product.deleteMany();
+    await prisma.account.deleteMany();
+    await prisma.session.deleteMany();
+    await prisma.verificationToken.deleteMany();
+    await prisma.user.deleteMany();
     // add products
-    await prisma.product.createMany({ data: sampleData.products });
+    await prisma.product. createMany({ data: sampleData.products });
+    await prisma.user.createMany({ data: sampleData.users });
     console.log("data base seeded successfully <3");
   } catch (error) {
     console.log(error);
