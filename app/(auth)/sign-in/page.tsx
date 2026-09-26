@@ -10,24 +10,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { APP_NAME } from "../../../lib/const";
 import CredentialsSignInForm from "./credentials-signin-form";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "Sign In",
 };
 
-const SignInPage = async (props: {
-  searchParams: Promise<{
-    callbackUrl: string;
-  }>;
-}) => {
-  const { callbackUrl } = await props.searchParams;
-
+const SignInPage = async () => {
   const session = await auth();
 
   if (session) {
-    return redirect(callbackUrl || "/");
+    return redirect("/" );
   }
 
   return (
