@@ -47,7 +47,6 @@ const CredentialsSignUpForm = () => {
           type="text"
           id="name"
           name="name"
-          required
           autoComplete="name"
           defaultValue={signUpDefaultValue.name}
         />
@@ -60,7 +59,6 @@ const CredentialsSignUpForm = () => {
           type="email"
           id="email"
           name="email"
-          required
           autoComplete="email"
           defaultValue={signUpDefaultValue.email}
         />
@@ -73,7 +71,6 @@ const CredentialsSignUpForm = () => {
           type="password"
           id="password"
           name="password"
-          required
           autoComplete="password"
           defaultValue={signUpDefaultValue.password}
         />
@@ -86,7 +83,6 @@ const CredentialsSignUpForm = () => {
           type="password"
           id="confirmPassword"
           name="confirmPassword"
-          required
           autoComplete="confirmPassword"
           defaultValue={signUpDefaultValue.confirmPassword}
         />
