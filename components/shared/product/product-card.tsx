@@ -1,4 +1,4 @@
-import { Product } from "@/prisma/types";
+import { Product } from "@/prisma/types/index";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";

@@ -1,4 +1,4 @@
-import { Product } from "@/prisma/types";
+import { Product } from "@/prisma/types/index";
 import ProductCard from "./product-card";
 
 interface ProductList {
