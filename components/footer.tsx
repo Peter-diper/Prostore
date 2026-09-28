@@ -1,6 +1,4 @@
-import Link from "next/link";
 import { APP_NAME } from "../lib/const";
-import { FolderGitIcon } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
