@@ -7,7 +7,7 @@ const curency = z
   .string()
   .refine(
     (value) => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(Number(value))),
-    "Price must have ecactly two decimal places",
+    "Price must have exacly two decimal places",
   );
 
 export const insertProductSchema = z.object({
