@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import { toast, ToastAction } from "../../ui/toast";
 import { addItemToCart } from "../../../lib/actions/cart.action";
+import { formatError, success } from "zod";
 
 const AddToCart = ({ items }: { items: CartItem }) => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const AddToCart = ({ items }: { items: CartItem }) => {
 
     toast.add({
       type: "success",
-      description: items.name + " added to cart",
+      description: res.message,
       actionProps: {
         children: "Go To Cart",
         onClick: () => router.push("/cart"),

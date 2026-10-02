@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
-import { ZodError } from "zod";
+import { number, ZodError } from "zod";
 import { twMerge } from "tailwind-merge";
+import { ta } from "zod/v4/locales";
+import { mergeValues } from "zod/v4/core";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -36,4 +38,17 @@ export function formatError(error: any): string {
 
   console.error("Unknown error:", error);
   return "Something went wrong";
+}
+
+// Round number to 2 decimal places
+export function round2(value: number | string) {
+  if (typeof value === "number") {
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+  } else if (typeof value === "string") {
+    return Math.round((Number(value) + Number.EPSILON) * 100) / 100;
+  } else {
+    throw new Error(
+      "type error (should be string or number ): value=> " + typeof value,
+    );
+  }
 }
