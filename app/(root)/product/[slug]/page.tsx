@@ -6,6 +6,7 @@ import ProductImages from "@/components/shared/product/product-image";
 
 import { notFound } from "next/navigation";
 import AddToCart from "../../../../components/shared/product/add-to-cart";
+import { getMyCart } from "../../../../lib/actions/cart.action";
 
 const ProductDetailPage = async (props: {
   params: Promise<{ slug: string }>;
@@ -16,6 +17,8 @@ const ProductDetailPage = async (props: {
   if (!product) {
     notFound();
   }
+
+  const cart = await getMyCart();
 
   return (
     <>
@@ -74,6 +77,7 @@ const ProductDetailPage = async (props: {
                       qty: 1,
                       image: product.images![0],
                     }}
+                    cart={cart}
                   />
                 </div>
               )}

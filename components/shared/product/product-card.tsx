@@ -13,7 +13,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             <Image
               src={product.images[0]}
               alt={product.name}
-              height={300}
+              height={300}  
               width={300}
               priority
               className="md:hover:scale-105 object-cover transition-all duration-150"
