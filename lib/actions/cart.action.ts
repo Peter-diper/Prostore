@@ -148,12 +148,12 @@ export async function getMyCart() {
 export async function removeItemFromCart(productId: string) {
   try {
     const sessionCartId = (await cookies()).get("sessionCartId")?.value;
+
     if (!sessionCartId) {
-      throw new Error("cart session not found");
+      throw new Error("Cart session not found");
     }
 
-    //  product
-    const product = await prisma.product.findFirst({
+    const product = await prisma.product.findUnique({
       where: { id: productId },
     });
 
@@ -161,34 +161,34 @@ export async function removeItemFromCart(productId: string) {
       throw new Error("Product not found");
     }
 
-    // get user cart
-
     const cart = await getMyCart();
 
-    if (!cart) throw new Error("cart not found");
-
-    // check for item
-    const exist = (cart.items as CartItem[]).find(
-      (x) => x.productId === productId,
-    );
-
-    if (!exist) throw new Error("Item not found");
-
-    if (exist.qty === 0) {
-      (cart.items as CartItem[]).filter((x) => x.productId !== exist.productId);
-    } else {
-      // decrease qty
-      (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty =
-        exist.qty - 1;
+    if (!cart) {
+      throw new Error("Cart not found");
     }
 
-    // update cart in database
+    const items = cart.items as CartItem[];
+    const existItem = items.find((item) => item.productId === productId);
+
+    if (!existItem) {
+      throw new Error("Item not found");
+    }
+
+    // Remove the item if its quantity is 1.
+    const updatedItems =
+      existItem.qty <= 1
+        ? items.filter((item) => item.productId !== productId)
+        : items.map((item) =>
+            item.productId === productId
+              ? { ...item, qty: item.qty - 1 }
+              : item,
+          );
 
     await prisma.cart.update({
       where: { id: cart.id },
       data: {
-        items: cart.items as Prisma.CartUpdateitemsInput[],
-        ...calcPrice(cart.items as CartItem[]),
+        items: updatedItems as Prisma.CartUpdateitemsInput[],
+        ...calcPrice(updatedItems),
       },
     });
 
@@ -196,7 +196,7 @@ export async function removeItemFromCart(productId: string) {
 
     return {
       success: true,
-      message: `${product.name} was remove from the cart`,
+      message: `${product.name} removed from the cart`,
     };
   } catch (error) {
     return {

@@ -1,4 +1,4 @@
-import z, { email } from "zod";
+import z from "zod";
 import { formatNumberWithDecimal } from "./utils";
 
 // schema for inserting products
@@ -7,7 +7,7 @@ const curency = z
   .string()
   .refine(
     (value) => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(Number(value))),
-    "Price must have exacly two decimal places",
+    "Price must have exactly two decimal places",
   );
 
 export const insertProductSchema = z.object({
