@@ -8,7 +8,6 @@ import { shippingAddress } from "../../../types";
 
 const ShippingAddresForm = ({ addres }: { addres: shippingAddress }) => {
   const router = useRouter();
-  
 
   return <>shipping addres form</>;
 };
