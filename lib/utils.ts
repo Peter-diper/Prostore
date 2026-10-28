@@ -35,8 +35,11 @@ export function formatError(error: any): string {
 
     return `${field} already exists`;
   }
+  if (error.message!) {
+    return error.message;
+  }
 
-  console.error("Unknown error:", error);
+  console.error("Unknown error:", error.message);
   return "Something went wrong";
 }
 

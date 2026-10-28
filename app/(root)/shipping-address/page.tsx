@@ -1,6 +1,5 @@
 import { auth } from "../../../auth";
 import { getMyCart } from "../../../lib/actions/cart.action";
-import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { shippingAddress } from "../../../types";
 import { getUserById } from "../../../lib/actions/user.action";
@@ -25,7 +24,7 @@ const ShippingAddresPage = async () => {
 
   const user = await getUserById(userId);
 
-  return <ShippingAddresForm addres={user.address as shippingAddress} />;
+  return <ShippingAddresForm address={user.address as shippingAddress} />;
 };
 
 export default ShippingAddresPage;
