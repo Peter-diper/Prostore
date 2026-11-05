@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { shippingAddressSchema } from "../../../lib/validators";
 import { ArrowRight } from "lucide-react";
+import { updateUserAddress } from "../../../lib/actions/user.action";
+import { toast } from "../../../components/ui/toast";
 
 type ShippingAddressFormValues = z.infer<typeof shippingAddressSchema>;
 
@@ -28,9 +30,24 @@ export default function ShippingAddressForm({
 
   const [isPending, startTransition] = useTransition();
 
-  function onSubmit(value) {
-    console.log(value);
-  }
+  const onSubmit: SubmitHandler<z.infer<typeof shippingAddressSchema>> = async (
+    value,
+  ) => {
+    startTransition(async () => {
+      const res = await updateUserAddress(value);
+      const message = res.message;
+      console.log(value);
+      if (!res) {
+        toast.add({
+          description: message,
+          type: "error",
+          priority: "high",
+        });
+        return;
+      }
+      router.push("/payment-method");
+    });
+  };
 
   return (
     <div className="mx-auto max-w-md space-y-5">
