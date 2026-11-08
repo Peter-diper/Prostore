@@ -72,7 +72,27 @@ export const config = {
       return session;
     },
     authorized({ request, auth }) {
+      // array of our path that we dont want a unuthnticatd user to use it
+      const protectedPath = [
+        /\/shipping-address/,
+        /\/payment-method/,
+        /\/place-order/,
+        /\/profile/,
+        /\/user\/(.*)/,
+        /\/order\/(.*)/,
+        /\/admin/,
+      ];
+
+      // get pathname
+      const { pathname } = request.nextUrl;
+
+      // check if user is not authenticatd and accessing a protected path
+      if (!auth && protectedPath.some((p) => p.test(pathname))) return false;
+
+      // check if we have an session card if not generate cookie
       if (!request.cookies.get("sessionCartId")) {
+        // Get path name from the req url object
+
         const sessionCartId = crypto.randomUUID();
         const newHeaders = new Headers(request.headers);
 

@@ -20,7 +20,7 @@ const ShippingAddresPage = async () => {
   const userId = session?.user?.id;
 
   if (!userId) {
-    redirect("/");
+    throw new Error("Please sign in first");
   }
 
   const user = await getUserById(userId);
