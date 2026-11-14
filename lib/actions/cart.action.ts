@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { CartItem } from "../../types";
-import { convertToPlaneObject, formatError, round2 } from "../utils";
+import { convertToPlaneObject, formatError, roundTo2 } from "../utils";
 import { auth } from "../../auth";
 import { prisma } from "../../db/prisma";
 import { cartItemSchema, insertCartSchema } from "../validators";
@@ -12,12 +12,12 @@ import { Prisma } from "../generated/prisma/client";
 // Calculate cart prices
 
 const calcPrice = (items: CartItem[]) => {
-  const itemsPrice = round2(
+  const itemsPrice = roundTo2(
       items.reduce((acc, item) => acc + Number(item.price) * item.qty, 0),
     ),
-    shippingPrice = round2(itemsPrice > 100 ? 0 : 10),
-    taxPrice = round2(0.15 * itemsPrice),
-    totalPrice = round2(itemsPrice + taxPrice + shippingPrice);
+    shippingPrice = roundTo2(itemsPrice > 100 ? 0 : 10),
+    taxPrice = roundTo2(0.15 * itemsPrice),
+    totalPrice = roundTo2(itemsPrice + taxPrice + shippingPrice);
 
   return {
     itemsPrice: itemsPrice.toFixed(2),
