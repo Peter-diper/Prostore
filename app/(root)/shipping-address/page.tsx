@@ -1,7 +1,7 @@
 import { auth } from "../../../auth";
 import { getMyCart } from "../../../lib/actions/cart.action";
 import { redirect } from "next/navigation";
-import { shippingAddress } from "../../../types";
+import { ShippingAddress } from "../../../types";
 import { getUserById } from "../../../lib/actions/user.action";
 import ShippingAddresForm from "./shipping-address-form";
 import CheckOutSteps from "../../../components/shared/checkout-steps";
@@ -28,7 +28,7 @@ const ShippingAddresPage = async () => {
   return (
     <>
       <CheckOutSteps current={1} />
-      <ShippingAddresForm address={user.address as shippingAddress} />
+      <ShippingAddresForm address={user.address as ShippingAddress} />
     </>
   );
 };

@@ -1,9 +1,8 @@
-import z from "zod";
+import z, { currencyCode } from "zod";
 import { formatNumberWithDecimal } from "./utils";
 import { PAYMENT_METHODS } from "./const";
 
-// schema for inserting products
-
+// schema for curency
 const curency = z
   .string()
   .refine(
@@ -11,6 +10,7 @@ const curency = z
     "Price must have exactly two decimal places",
   );
 
+// schema for inserting products
 export const insertProductSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   slug: z.string().min(3, "Slug must be at least 3 characters"),
@@ -85,3 +85,27 @@ export const paymentMethodSchema = z
     path: ["type"],
     message: "invalid patyment method",
   });
+
+// Schema for inserting order
+
+export const insertOrderSchema = z.object({
+  userId: z.string().min(1, "user is rquaired"),
+  itemsPrice: curency,
+  shippingPrice: curency,
+  taxPrcie: curency,
+  totalPrice: curency,
+  paymentMethod: z.string().refine((data) => PAYMENT_METHODS.includes(data), {
+    message: "Invalid payment method ",
+  }),
+  shippingAddress: shippingAddressSchema,
+});
+
+//Schema for inserting an order item
+export const insertOrderItemSchema = z.object({
+  productId: z.string(),
+  slug: z.string(),
+  image: z.string(),
+  price: curency,
+  name: z.string(),
+  qty: z.number(),
+});
