@@ -27,6 +27,7 @@ const calcPrice = (items: CartItem[]) => {
   };
 };
 
+// add item to cart
 export async function addItemToCart(data: CartItem) {
   try {
     // check for cart cookie
