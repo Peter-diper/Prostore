@@ -46,8 +46,8 @@ const PlaceOrderPage = async () => {
       <h1 className="py-4 text-2xl">Place Order</h1>
 
       <div className="grid md:grid-cols-3 md:gap-5">
-        <div className="md:col-span-2 overflow-x-auto space-y-4">
-          <Card className="border-2">
+        <div className="md:col-span-2 space-y-4">
+          <Card>
             <CardContent className="p-4  space-y-2">
               <h2 className="font-bold text-xl pb-4">Shipping Address</h2>
               <p>{userAddress.fullname}</p>
@@ -64,7 +64,7 @@ const PlaceOrderPage = async () => {
               </div>{" "}
             </CardContent>
           </Card>
-          <Card className="border-2">
+          <Card>
             <CardContent className="p-4  space-y-2">
               <h2 className="font-bold text-xl pb-4">Payment Method</h2>
               <p className="text-[14px]">{user.paymentMethod}</p>
@@ -77,7 +77,7 @@ const PlaceOrderPage = async () => {
               </div>
             </CardContent>
           </Card>
-          <Card className="border-2">
+          <Card>
             <CardContent className="p-4  space-y-2">
               <h2 className="font-bold text-xl pb-4">Order Items</h2>
 
@@ -139,8 +139,8 @@ const PlaceOrderPage = async () => {
                 <div>{formatCurrency(cart.shippingPrice)}</div>
               </div>{" "}
               <div className="flex justify-between">
-                <div className="text-[16px] font-bold">Toatl</div>
-                <div>{formatCurrency(cart.toatlPrice)}</div>
+                <div className="text-[16px] font-bold">Total</div>
+                <div>{formatCurrency(cart.totalPrice)}</div>
               </div>
             </CardContent>
           </Card>
