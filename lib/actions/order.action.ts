@@ -67,6 +67,7 @@ export async function createOrder() {
         await tx.orderItem.create({
           data: {
             ...item,
+            price: item.price,
             orderId: insertedOrder.id,
           },
         });
@@ -94,7 +95,7 @@ export async function createOrder() {
     return {
       success: true,
       message: "order created succesfuly",
-      redirect: `/order/${insertedOrderId}`,
+      redirectTo: `/order/${insertedOrderId}`,
     };
   } catch (error) {
     if (isRedirectError(error)) throw error;
