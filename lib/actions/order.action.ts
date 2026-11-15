@@ -9,10 +9,11 @@ import { insertOrderSchema } from "../validators";
 import { prisma } from "../../db/prisma";
 import { CartItem } from "../../types";
 
-// Create order and create the Oder Items
+// Create Order and create the Oder Items
 
 export async function createOrder() {
   try {
+    // validate user
     const session = await auth();
     if (!session) throw new Error("User is not Authenticated");
 
@@ -22,6 +23,7 @@ export async function createOrder() {
 
     const user = await getUserById(userId);
 
+    // check if statement
     if (!cart || cart.items.length === 0)
       return {
         success: false,
@@ -57,23 +59,21 @@ export async function createOrder() {
 
     // create a transaction to create order and order items in database
     const insertedOrderId = await prisma.$transaction(async (tx) => {
-      // create order
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      const insertedOrder = await tx.order.create({ data: order });
-      // create order from the cart items
-
+      const insertedOrder = await tx.order.create({
+        data: order,
+      });
+      // create order item
       for (const item of cart.items as CartItem[]) {
         await tx.orderItem.create({
           data: {
             ...item,
-            price: item.price,
             orderId: insertedOrder.id,
           },
         });
       }
-      // clear cart
+
+      // clear the cart with update
+
       await tx.cart.update({
         where: { id: cart.id },
         data: {
@@ -84,6 +84,8 @@ export async function createOrder() {
           shippingPrice: 0,
         },
       });
+
+      // return the transaction id
       return insertedOrder.id;
     });
 
@@ -91,8 +93,8 @@ export async function createOrder() {
 
     return {
       success: true,
-      message: "Order created ",
-      redirectTo: `/order/${insertedOrderId}`,
+      message: "order created succesfuly",
+      redirect: `/order/${insertedOrderId}`,
     };
   } catch (error) {
     if (isRedirectError(error)) throw error;
