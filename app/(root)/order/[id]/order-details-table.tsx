@@ -35,7 +35,12 @@ const OrderDetaiTable = ({ order }: { order: Order }) => {
   } = order;
   return (
     <>
-      <h2 className="mb-3">{formatId(order.id)}</h2>
+      <Badge
+        variant={"outline"}
+        className="mb-3 px-4 py-6 text-2xl font-medium"
+      >
+        <span>Order: </span> {formatId(order.id)}
+      </Badge>
       <form className="grid gap-4 md:grid-cols-5">
         <div className="col-span-3 flex flex-col gap-4">
           <Card>
@@ -43,11 +48,13 @@ const OrderDetaiTable = ({ order }: { order: Order }) => {
               <h2 className="text-xl pb-4">Payment Method</h2>
               <p>{paymentMethod}</p>
               {isPaid ? (
-                <Badge variant="secondary">
+                <Badge className="p-4 rounded-sm" variant="secondary">
                   Paid at {formatDateTime(paidAt!).dateTime}
                 </Badge>
               ) : (
-                <Badge variant="destructive">Not paid</Badge>
+                <Badge className="p-4 rounded-sm" variant="destructive">
+                  Not paid
+                </Badge>
               )}
             </CardContent>
           </Card>
@@ -60,11 +67,13 @@ const OrderDetaiTable = ({ order }: { order: Order }) => {
                 {shippingAddress.postalCode}, {shippingAddress.country}{" "}
               </p>
               {isDeliverd ? (
-                <Badge variant="secondary">
+                <Badge className="p-4 rounded-sm" variant="secondary">
                   Delivered at {formatDateTime(deliveredAt!).dateTime}
                 </Badge>
               ) : (
-                <Badge variant="destructive">Not delivered</Badge>
+                <Badge className="p-4 rounded-sm" variant="destructive">
+                  Not delivered
+                </Badge>
               )}
             </CardContent>
           </Card>
